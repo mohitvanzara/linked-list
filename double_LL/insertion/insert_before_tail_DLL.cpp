@@ -31,6 +31,17 @@ Node* convertArr2DoubleLL(vector<int> &arr){
     }
     return head; 
 }
+Node* insertionBeforeTail(Node* head,int val){
+    Node* tail = head;
+    while(tail->next != NULL){
+        tail = tail->next;
+    }
+    Node* prev = tail->back;
+    Node* NewNode =new Node(val,tail,prev);
+    prev->next =NewNode;
+    tail->back =NewNode;
+    return head;
+}
 void print(Node* head){
     while(head != NULL){
         cout<<head->data<<" ";
@@ -40,6 +51,7 @@ void print(Node* head){
 int main(){
     vector<int> arr ={1,2,3,4};
     Node* head = convertArr2DoubleLL(arr);
+    head = insertionBeforeTail(head , 10);
     print(head);
 
 }

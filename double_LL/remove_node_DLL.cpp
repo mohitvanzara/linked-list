@@ -29,7 +29,22 @@ Node* convertArr2DoubleLL(vector<int> &arr){
         prev->next = temp;
         prev = temp;
     }
-    return head; 
+    return head;
+}
+void deleteNode(Node* temp){
+    Node* prev = temp->back;
+    Node* front = temp->next;
+    if(front == NULL){
+        prev->next =nullptr;
+        temp->back =nullptr;
+        delete temp;
+        return;
+    }
+    prev->next = front;
+    front->back = prev;
+    temp->next = temp->back = nullptr;
+    free(temp);
+
 }
 void print(Node* head){
     while(head != NULL){
@@ -38,8 +53,9 @@ void print(Node* head){
     }
 }
 int main(){
-    vector<int> arr ={1,2,3,4};
+    vector<int> arr ={1,2,3,4,5};
     Node* head = convertArr2DoubleLL(arr);
+    deleteNode(head->next->next);
     print(head);
-
+    return 0;
 }

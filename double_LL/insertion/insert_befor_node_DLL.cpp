@@ -31,6 +31,11 @@ Node* convertArr2DoubleLL(vector<int> &arr){
     }
     return head; 
 }
+void insertionBeforeNode(Node* node,int val){
+    Node* prev =node->back;
+    Node* NewNode =new Node(val,node,prev);
+    node->back =prev->next = NewNode;
+}
 void print(Node* head){
     while(head != NULL){
         cout<<head->data<<" ";
@@ -40,6 +45,7 @@ void print(Node* head){
 int main(){
     vector<int> arr ={1,2,3,4};
     Node* head = convertArr2DoubleLL(arr);
+    insertionBeforeNode(head->next->next,10);
     print(head);
 
 }

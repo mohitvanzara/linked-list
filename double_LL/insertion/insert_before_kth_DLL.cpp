@@ -31,6 +31,25 @@ Node* convertArr2DoubleLL(vector<int> &arr){
     }
     return head; 
 }
+Node* insertionBeforeKth(Node* head,int val,int k){
+    if(k==1){
+         Node* NewHead = new Node(val, head,nullptr);
+        head->back = NewHead;
+        return NewHead;
+    }
+    Node* kNode =head;
+    int cnt =0;
+    while(kNode != NULL){
+        cnt++;
+        if(cnt==k) break;
+        kNode = kNode->next;
+    }
+    Node* prev = kNode->back;
+    Node* NewNode =new Node(val,kNode,prev);
+    prev->next =NewNode;
+    kNode->back =NewNode;
+    return head;
+}
 void print(Node* head){
     while(head != NULL){
         cout<<head->data<<" ";
@@ -40,6 +59,7 @@ void print(Node* head){
 int main(){
     vector<int> arr ={1,2,3,4};
     Node* head = convertArr2DoubleLL(arr);
+    head = insertionBeforeKth(head ,10, 1);
     print(head);
 
 }
